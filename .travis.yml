@@ -6,7 +6,7 @@ install:
   - sudo pip install ansible-container
 before_script:
 script:
-  - ansible-container --var-file vars.yml build
+  - sudo ansible-container --var-file vars.yml build
 after_success:
 after_failure:
 after_script:
