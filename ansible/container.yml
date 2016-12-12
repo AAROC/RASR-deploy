@@ -9,6 +9,10 @@ services:
       - "30000:3000"
     command: ['bundle', 'exec','rails', 's','-p','3000','-b' , '0.0.0.0']
     working_dir: "{{ deploy_dir }}/rasr"
+    environment:
+      DEVISE_SECRET_KEY_TEST: test
+      GLIBRARY_USERNAME: "{{ glibrary_username }}"
+      GLIBRARY_PASSWORD: "{{ glibrary_password }}"
     dev_overrides:
       environment:
         - "DEBUG=1"
@@ -19,6 +23,12 @@ services:
     command: docker-entrypoint.sh mysqld
     environment:
       - MYSQL_ROOT_PASSWORD=changeme
+  api_server:
+    image: tomcat:8.5-jre8
+    command: ["catalina.sh","run"]
+    ports:
+      - 8888:8080
+
 
 
 registries:
