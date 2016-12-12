@@ -1,0 +1,25 @@
+# This should be your Ansible playbooks to provision your containers.
+# An inventory will be automatically created using the names of the services
+# from your container.yml file.
+# Add any roles or other modules you'll need to this directory too.
+# For many examples of roles, check out Ansible Galaxy: https://galaxy.ansible.com/
+#
+---
+- hosts: all
+  gather_facts: false
+
+- hosts: app
+  tasks:
+    - name: Get RASR app src code
+      git:
+        repo: https://github.com/AAROC/rasr-app
+        clone: yes
+        dest: /opt/deploy/rasr
+    - name: Install gems
+      bundler:
+        state: present
+        chdir: /opt/deploy/rasr
+    - name: Migrate DB
+      command: rake db:migrate
+      args:
+        chdir: /opt/deploy/rasr

@@ -1,0 +1,30 @@
+version: "1"
+services:
+  # Add your containers here, specifying the base image you want to build from
+  # For example:
+  #
+  app:
+    image: rails
+    ports:
+      - "30000:3000"
+    command: ['bundle', 'exec','rails', 's','-p','3000','-b' , '0.0.0.0']
+    working_dir: "{{ deploy_dir }}/rasr"
+    dev_overrides:
+      environment:
+        - "DEBUG=1"
+  db:
+    image: "{{ docker_sql_image }}"
+    ports:
+      - "3306:3306"
+    command: docker-entrypoint.sh mysqld
+    environment:
+      - MYSQL_ROOT_PASSWORD=changeme
+
+
+registries:
+  docker:
+    url: https://hub.docker.com
+    namespace: /u/aaroc
+  quay:
+    url: https://quay.io
+    namespace: aaroc

@@ -1,0 +1,12 @@
+language: bash
+sudo: true
+before_install:
+install:
+  - sudo pip install ansible
+  - sudo pip install ansible-container
+before_script:
+script:
+  - ansible-container --vars-file build
+after_success:
+after_failure:
+after_script:
