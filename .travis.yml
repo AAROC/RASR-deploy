@@ -4,6 +4,7 @@ services:
   - docker
 
 before_install:
+  - sudo apt-get install python-dev
 install:
   - sudo pip install ansible
   - sudo pip install ansible-container
