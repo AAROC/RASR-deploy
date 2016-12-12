@@ -1,5 +1,8 @@
 language: bash
-sudo: true
+sudo: required
+services:
+  - docker
+
 before_install:
 install:
   - sudo pip install ansible
