@@ -1,7 +1,7 @@
 ---
 # Where will the rasr app be deployed
 deploy_dir: /opt/deploy/
-glibrary_username:
+glibrary_username: admin
 glibrary_password: EQXIovD0tId4JqV4_CWGNHEzF9HYA4nk
 mysql_python_package:
   RedHat: MySQL-python
